@@ -513,10 +513,6 @@ def conve_convert(dataset):
     
     return
 
-data_folder, model_folder = '../Data', '../Model'
-node_file, link_file, label_file = 'node.dat', 'link.dat', 'label.dat'
-info_file, meta_file = 'info.dat', 'meta.dat'
-
 
 def eern_convert(dataset):
     ori_data_folder = f'{data_folder}/{dataset}'
