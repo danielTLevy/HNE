@@ -512,3 +512,22 @@ def conve_convert(dataset):
     new_link_file.close()         
     
     return
+
+data_folder, model_folder = '../Data', '../Model'
+node_file, link_file, label_file = 'node.dat', 'link.dat', 'label.dat'
+info_file, meta_file = 'info.dat', 'meta.dat'
+
+
+def eern_convert(dataset):
+    ori_data_folder = f'{data_folder}/{dataset}'
+    model_data_folder = f'{model_folder}/EERN/data/{dataset}'
+
+    print(f'EERN: copying {dataset}\'s link file!')
+    new_link_file = open(f'{model_data_folder}/{link_file}','w')
+    with open(f'{ori_data_folder}/{link_file}','r') as original_link_file:
+        for line in original_link_file:
+            left, right, ltype, weight = line[:-1].split('\t')
+            new_link_file.write(f'{left}\t{right}\t{ltype}\t{weight}\n')
+    new_link_file.close()  
+
+    return

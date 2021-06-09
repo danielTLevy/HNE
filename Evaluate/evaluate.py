@@ -14,7 +14,7 @@ def parse_args():
     parser.add_argument('-dataset', required=True, type=str, help='Targeting dataset.', 
                         choices=['DBLP','Freebase','PubMed','Yelp'])
     parser.add_argument('-model', required=True, type=str, help='Targeting model.', 
-                        choices=['metapath2vec-ESim','PTE','HIN2Vec','AspEm','HEER','R-GCN','HAN','MAGNN','HGT','TransE','DistMult','ComplEx','ConvE'])
+                        choices=['metapath2vec-ESim','PTE','HIN2Vec','AspEm','HEER','R-GCN','HAN','MAGNN','HGT','TransE','DistMult','ComplEx','ConvE', 'EERN'])
     parser.add_argument('-task', required=True, type=str, help='Targeting task.',
                         choices=['nc', 'lp', 'both'])    
     parser.add_argument('-attributed', required=True, type=str, help='Only R-GCN, HAN, MAGNN, and HGT support attributed training.',
@@ -55,7 +55,7 @@ def record(args, all_tasks, train_para, all_scores):
 def check(args):
     
     if args.attributed=='True':
-        if args.model not in ['R-GCN', 'HAN', 'MAGNN', 'HGT']:
+        if args.model not in ['R-GCN', 'HAN', 'MAGNN', 'HGT', 'EERN']:
             print(f'{args.model} does not support attributed training!')
             print('Only R-GCN, HAN, MAGNN, and HGT support attributed training!')
             return False
@@ -65,7 +65,7 @@ def check(args):
             return False
         
     if args.supervised=='True':
-        if args.model not in ['R-GCN', 'HAN', 'MAGNN', 'HGT']:
+        if args.model not in ['R-GCN', 'HAN', 'MAGNN', 'HGT', 'EERN']:
             print(f'{args.model} does not support semi-supervised training!')
             print('Only R-GCN, HAN, MAGNN, and HGT support semi-supervised training!')
             return False
